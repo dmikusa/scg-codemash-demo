@@ -1,0 +1,11 @@
+meta {
+  name: Request Metrics
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/actuator/metrics/spring.cloud.gateway.requests
+  body: none
+  auth: none
+}

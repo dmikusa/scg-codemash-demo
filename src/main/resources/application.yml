@@ -1,6 +1,7 @@
 logging:
   level:
-    com.sevensignal.gateway_api: DEBUG
+    # extra logging so we can see what is going on more easily
+    #  see https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/troubleshooting.html#log-levels
     org.springframework.security: TRACE
     org.springframework.boot.autoconfigure.web: TRACE
     org.springframework.cloud.gateway: TRACE
@@ -10,9 +11,30 @@ logging:
     org.springframework.web.HttpLogging: TRACE
 
 spring:
+  profiles:
+    active: facade
   cloud:
     gateway:
+      # enables wiretap logging
+      #  see https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/troubleshooting.html#wiretap
       httpserver:
         wiretap: true
       httpclient:
         wiretap: true
+      # enable metrics for these endpoints
+      #  see https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/global-filters.html#gateway-metrics-filter
+      metrics:
+        enabled: true
+        tags:
+          /give-me-dogs:
+            enabled: true
+          /give-me-cats:
+            enabled: true
+
+# expose all metrics on the web (don't do this without security enabled in production)
+#  see https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.exposing
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

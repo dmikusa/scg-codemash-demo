@@ -1,0 +1,20 @@
+meta {
+  name: Get Dog Image
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/give-me-dogs/{{id}}/image?imgType=jpg&breed=mountain-bernese
+  body: none
+  auth: none
+}
+
+query {
+  imgType: jpg
+  breed: mountain-bernese
+}
+
+vars:pre-request {
+  id: n02107683_735
+}
