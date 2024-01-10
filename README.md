@@ -48,7 +48,7 @@ With it enabled, you'll get lines like:
 
 These could be fed into your log aggregation system for further analysis.
 
-## Transformer
+## Transformer Pattern
 
 In the Facade demo, we saw how we could rewrite the response from one of the APIs. This is being done
 in `RewriteDogJsonGatewayFilterFactory`. The code uses Jackson to parse the JSON response from the upstream API and
