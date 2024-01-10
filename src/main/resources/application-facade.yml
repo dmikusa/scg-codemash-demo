@@ -1,0 +1,39 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # fetch a random cat, return JSON (default is the image)
+        - id: cats
+          uri: https://cataas.com/
+          predicates:
+            - Path=/give-me-cats
+          filters:
+            - SetPath=/cat
+            - AddRequestParameter=json,true
+        # fetch the specific cat, return image
+        - id: cat-img
+          uri: https://cataas.com/
+          predicates:
+            - Path=/give-me-cats/{id}/image
+          filters:
+            - SetPath=/cat/{id}
+
+        # fetch a random dog, return JSON (default is JSON)
+        - id: dog-service
+          uri: https://dog.ceo
+          predicates:
+            - Path=/give-me-dogs
+          filters:
+            - SetPath=/api/breeds/image/random
+            - RewriteDogJson
+        # fetch the specific dog's image
+        - id: dog-service
+          uri: https://images.dog.ceo
+          predicates:
+            - Path=/give-me-dogs/{id}/image
+          #            - Query=breed
+          #            - Query=imgType
+          filters:
+            - CaptureRequestParameter=breed
+            - CaptureRequestParameter=imgType
+            - SetPath=/breeds/{breed}/{id}.{imgType}
