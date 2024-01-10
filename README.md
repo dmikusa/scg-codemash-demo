@@ -1,6 +1,7 @@
 # Spring Cloud Gateway Demo
 
-This is a small API Gateway demo using Spring Cloud Gateway. It was done for my talk at CodeMash 2024.
+This is a small API Gateway demo using Spring Cloud Gateway. It was done
+for [my talk at CodeMash 2024](https://codemash.org/session-details/?id=536315), [slides](https://github.com/dmikusa/scg-codemash-demo/blob/main/API%20Slides%20-%20CodeMash.pdf).
 
 There are some client templates set up using [Bruno](https://www.usebruno.com/), you can open them or just look at the
 text and make your own requests. Any tool like `curl` or Postman will work just fine.
